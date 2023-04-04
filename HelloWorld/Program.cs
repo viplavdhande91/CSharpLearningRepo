@@ -1,24 +1,49 @@
 ﻿using System;
-
 namespace Cal
 {
     public delegate void delCalc(int a, int b);
+
     class Arithmetic
     {
-        public static void Main(string[] args)
+        public static void Addition(int a, int b)
         {
 
-           delCalc delg = delegate (int a, int b)
-            {
-                Console.WriteLine("sum is {0}", a + b);
-
-            };
+            Console.WriteLine("Result of Addition is {0}",a+b);
 
 
-            delg(1, 2);
+        }
+        public static void Subtraction(int a, int b)
+        {
+
+            Console.WriteLine("Result of Subtraction is {0}",a-b);
+
+
+        }
+        public static void Multiplication(int a, int b)
+        {
+
+            Console.WriteLine("Result of Multiplication is {0}",a*b);
+        }
+
+
+
+         
+        public static void Main(string[] args){
+
+
+            delCalc delc = new delCalc(Addition);
+
+            delc += Subtraction;
+
+            delc+= Multiplication;
+
+            delc.Invoke(2, 5);
+           
 
         }
 
-    }
+
+    } 
+
 
 }
