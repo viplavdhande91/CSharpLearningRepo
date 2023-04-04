@@ -7,9 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="D:\c#\codes\anonymousFunction.cs" Link="anonymousFunction.cs" />
-    <Compile Include="D:\c#\codes\delegates.cs" Link="delegates.cs" />
-  </ItemGroup>
-
 </Project>

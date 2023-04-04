@@ -234,7 +234,7 @@ FakesAssemblies/
 
 # Visual Studio 6 build log
 *.plg
-
+**/**/*.v2
 # Visual Studio 6 workspace options file
 *.opt
 
@@ -257,6 +257,7 @@ paket-files/
 .idea/
 *.sln.iml
 
+
 # CodeRush
 .cr/
 
@@ -266,3 +267,11 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+*.suo
+*.user
+_ReSharper.*
+bin/
+
+obj/
+packages
