@@ -234,7 +234,7 @@ FakesAssemblies/
 
 # Visual Studio 6 build log
 *.plg
-
+*.v2
 # Visual Studio 6 workspace options file
 *.opt
 
