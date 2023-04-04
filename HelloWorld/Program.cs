@@ -1,49 +1,33 @@
 ﻿using System;
-namespace Cal
+class A
 {
-    public delegate void delCalc(int a, int b);
-
-    class Arithmetic
+    public virtual void Print()
     {
-        public static void Addition(int a, int b)
-        {
+        Console.WriteLine("This is class A Method");
+    }
+}
+class B : A
+{
+    public override sealed void Print()
+    {
+        Console.WriteLine("This is class B Method");
+    }
+}
+class C : B
+{
+    public override void Print() //cANT OVERRRIDE BECAUSE IT IS SEALED
+    {
+        Console.WriteLine("This is class C Method");
+    }
+}
+   
 
-            Console.WriteLine("Result of Addition is {0}",a+b);
+class Program
+{
 
-
-        }
-        public static void Subtraction(int a, int b)
-        {
-
-            Console.WriteLine("Result of Subtraction is {0}",a-b);
-
-
-        }
-        public static void Multiplication(int a, int b)
-        {
-
-            Console.WriteLine("Result of Multiplication is {0}",a*b);
-        }
-
-
-
-         
-        public static void Main(string[] args){
-
-
-            delCalc delc = new delCalc(Addition);
-
-            delc += Subtraction;
-
-            delc+= Multiplication;
-
-            delc.Invoke(2, 5);
-           
-
-        }
-
-
-    } 
-
-
+    static void Main(string[] args)
+    {
+        C objSealed = new C();
+        objSealed.Print();
+    }
 }
