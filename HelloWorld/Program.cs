@@ -34,19 +34,6 @@ namespace Cal
             Geeks geek = new Geeks("Viplav Patil", 72);
             geek.Display();
 
-
-
         }
-
-
-
-
     }
-
-
-
-
-
-
-
 }
