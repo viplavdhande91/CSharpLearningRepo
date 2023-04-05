@@ -1,30 +1,39 @@
-﻿using System;
+﻿// C# program to illustrate encapsulation
+using System;
 
-namespace MyApplication
-{
+public class DemoEncap {
 
-    // Interface
-    interface IAnimal
-    {
-        void animalSound(); // interface method (does not have a body)
-    }
+	// private variables declared these can only be accessed by public methods of class
+	private String studentName = string.Empty;
 
-    // Pig "implements" the IAnimal interface
-    class Pig : IAnimal
-    {
-        public void animalSound()
-        {
-            // The body of animalSound() is provided here
-            Console.WriteLine("The pig says: wee wee");
-        }
-    }
+	// using accessors to get and set the value of studentName
+	public String Name
+	{
 
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Pig myPig = new Pig();  // Create a Pig object
-            myPig.animalSound();
-        }
-    }
+		get { return studentName; }
+
+		set { studentName = value; }
+	}
+
+
+}
+
+// Driver Class
+class GFG {
+
+	// Main Method
+	static public void Main()
+	{
+
+		// creating object
+		DemoEncap obj = new DemoEncap();
+
+		// calls set accessor of the property Name, and pass "Ankita" as value of the standard field 'value'
+		obj.Name = "Ankita";
+
+	
+
+		// Displaying values of the variables
+		Console.WriteLine(" Name : " + obj.Name);
+	}
 }

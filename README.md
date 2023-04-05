@@ -1,67 +1,60 @@
 
-# C# Interfaces
+# C# Encapsualation
 
 ## Important points: 
 
 
-1. An interface is a completely "abstract class", which can only contain abstract methods and properties (with empty bodies):
-
-
-
-2. It is considered good practice to start with the letter "I" at the beginning of an interface, as it makes it easier for yourself and others to remember that it is an interface and not a class.
-
-By default, members of an interface are abstract and public.
-
-Note: Interfaces can contain properties and methods, but not fields.
+1. Explanation: In the above program the class DemoEncap is encapsulated as the variables are declared as private. To access these private variables we are using the Name  accessors which contain the get and set method to retrieve and set the values of private fields. Accessors/Properties are defined as public so that they can access in other class. 
 
 
 
 
-# Notes on Interfaces:
+## Why And When To Use Interfaces?
+
+1. #### Data Hiding:  
+##### The user will have no idea about the inner implementation of the class. It will not be visible to the user that how the class is stored values in the variables. He only knows that we are passing the values to accessors and variables are getting initialized to that value.
 
 
-1. Like abstract classes, interfaces cannot be used to create objects (in the example above, it is not possible to create an "IAnimal" object in the Program class)
-2. Interface methods do not have a body - the body is provided by the "implement" class
-3. On implementation of an interface, you must override all of its methods
-4. Interfaces can contain properties and methods, but not fields/variables
-5. An interface cannot contain a constructor (as it cannot be used to create objects)
 
-# Why And When To Use Interfaces?
+2. #### Increased Flexibility:
+##### We can make the variables of the class as read-only or write-only depending on our requirement. If we wish to make the variables as read-only then we have to only use Get Accessor in the code. If we wish to make the variables as write-only then we have to only use Set Accessor.
+3. #### Reusability: 
+##### Encapsulation also improves the re-usability and easy to change with new requirements.
 
-1. To achieve security - hide certain details and only show the important details of an object (interface).
+4. #### Testing code is easy:
+##### Encapsulated code is easy to test for unit testing.
+## Access Modifiers related to Encapsulation
 
-2. C# does not support "multiple inheritance" (a class can only inherit from one base class). However, it can be achieved with interfaces, because the class can implement multiple interfaces. Note: To implement multiple interfaces, separate them with a comma (see example below).
-``` bash
-interface IFirstInterface 
-{
-  void myMethod(); // interface method
-}
 
-interface ISecondInterface 
-{
-  void myOtherMethod(); // interface method
-}
 
-// Implement multiple interfaces
-class DemoClass : IFirstInterface, ISecondInterface 
-{
-  public void myMethod() 
-  {
-    Console.WriteLine("Some text..");
-  }
-  public void myOtherMethod() 
-  {
-    Console.WriteLine("Some other text...");
-  }
-}
+| Modifier | Description     | 
+| :-------- | :------- | 
+| `public` | `The code is accessible for all classes` | 
+| `private` | `The code is only accessible within the same class` | 
+| `protected` | `The code is accessible within the same class, or in a class that is inherited from that class.` | 
+| `internal` | `The code is only accessible within its own assembly, but not from another assembly.` | 
 
-class Program 
-{
-  static void Main(string[] args)
-  {
-    DemoClass myObj = new DemoClass();
-    myObj.myMethod();
-    myObj.myOtherMethod();
-  }
-}
-```
+
+#### Notes: 
+1. ##### There's also two combinations: protected internal and private protected.
+
+
+## Why Access Modifiers?
+
+
+1. #### Control The Visibility:  
+##### To control the visibility of class members (the security level of each individual class and class member).
+
+
+
+
+2. #### To achieve "Encapsulation:  
+#####  which is the process of making sure that "sensitive" data is hidden from users. This is done by declaring fields as private.
+
+
+3. #### Note:  
+#####  By default, all members of a class are private if you don't specify an access modifier:
+
+
+
+
