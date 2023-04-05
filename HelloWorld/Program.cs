@@ -1,39 +1,36 @@
 ﻿using System;
-namespace Cal
+
+namespace MyApplication
 {
-
-    public partial class Geeks
+  // Abstract class
+  abstract class Animal
+  {
+    // Abstract method (does not have a body)
+    public abstract void animalSound();
+    // Regular method
+    public void sleep()
     {
-        private string Author_name;
-        private int Total_articles;
-
-        public Geeks(string a, int t)
-        {
-            this.Author_name = a;
-            this.Total_articles = t;
-        }
+      Console.WriteLine("Zzz");
     }
-
-
-    public partial class Geeks
+  }
+  
+  // Derived class (inherit from Animal)
+  class Pig : Animal
+  {
+    public override void animalSound()
     {
-        public void Display()
-        {
-            Console.WriteLine("Author's name is : " + Author_name);
-            Console.WriteLine("Total number articles is : " + Total_articles);
-        }
+      // The body of animalSound() is provided here
+      Console.WriteLine("The pig says: wee wee");
     }
+  }
 
-
-    public class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-
-        public static void Main(string[] args)
-        {
-
-            Geeks geek = new Geeks("Viplav Patil", 72);
-            geek.Display();
-
-        }
+      Pig myPig = new Pig();  // Create a Pig object
+      myPig.animalSound();
+      myPig.sleep();
     }
+  }
 }
