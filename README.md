@@ -3,13 +3,12 @@
 
 
 
-1. When the derived class overrides a base class method/variable/property/event, then the new method/variable/property/event can be declared as sealed.
 
 
-2. Sealing the new method prevents the method from further overriding.
+1. Sealing the new method prevents the method from further overriding.
 
 
-3. An overridden method can be sealed by preceding the override keyword with the sealed keyword.
+2. An overridden method can be sealed by preceding the override keyword with the sealed keyword.
 
 
 
