@@ -32,9 +32,9 @@
 ## Why And When To Use Interfaces?
 
 1.
-#####  IQueryable inherited from IEnumerable interface Enumerable ,only, so anything you can do with a IEnumerable, IEnumerable you can also do with an IQueryable also.
+#####  IQueryable inherited from IEnumerable interface Enumerable ,only, so anything you can do with a IEnumerable, you can also do with an IQueryable also.
 2.
-##### IEnumerable bring all result from database and  Filter then filter it at code side, which is a network load and performance issue
+##### IEnumerable bring all result from database and  then filter it at code side, which is a network load and performance issue.
 
 3.
-##### IQueryable filter the result at database only and IQueryable then get only filtered result, therefore less  Database network load and better performance 
+##### IQueryable filter the result at database only and IQueryable then get only filtered result, therefore less  Database network load and better performance .
