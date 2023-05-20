@@ -4,7 +4,7 @@
 ## Important points: 
 
 
-1. Explanation: In the above program the class DemoEncap is encapsulated as the variables are declared as private. To access these private variables we are using the Name  accessors which contain the get and set method to retrieve and set the values of private fields. Accessors/Properties are defined as public so that they can access in other class. 
+1. Explanation: Class DemoEncap is encapsulated as the variables are declared as private. To access these private variables we are using the Name accessors which contain the get and set method to retrieve and set the values of private fields. Accessors/Properties are defined as public so that they can access in other class. 
 
 
 
