@@ -38,6 +38,8 @@ namespace Cal
             delc+= Multiplication;
 
             delc.Invoke(2, 5);
+
+            // delc(2,3);
            
 
         }
