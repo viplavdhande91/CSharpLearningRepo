@@ -13,6 +13,7 @@
 9. If an exception is thrown and is unhandled in an inner block then it is automatically thrown to its outer block. 
 10. If an exception is thrown in the called method and if it unhandled in the called method then the exception is automatically thrown to its calling method.
 11. If the exception occurs in Main function and is unhandled then **CLR** handles it and the program is terminated.
+12. Unlike C++ we cannot throw a string using throw keyword in c#.Using throw keyword we can throw only object which is quite relevant to get some more information for handling exception.
 
 ## throw vs throw ex: 
 
