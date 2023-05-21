@@ -1,66 +1,28 @@
 ﻿using System;
-
-namespace Cal
+class Program
 {
-
-    class Maths
+    static void Main(string[] args)
     {
-
-        static void Main() {
-
-            string input = "aabbccddd";
-
-            string result = "";
-
-           Dictionary<char,int> countdict = new Dictionary<char,int>();
-
-
-           for (int i = 0; i < input.Length; i++)
-            {
-                if (countdict.ContainsKey(input[i]))
-                {
-                    countdict[input[i]] = countdict[input[i]] +  1;
-
-                }
-                else
-                {
-                    countdict[input[i]] = 1;
-
-                }
-
-            }
-
-          foreach(var item in countdict){
-
-                Console.WriteLine("Key: {0}",item.Key);
-                Console.WriteLine( "Value: {0}", item.Value);
-
-
-            }
-
-          foreach (var item in countdict)
-            {
-                char key = item.Key;
-                String value = item.Value.ToString();
-
-                result += key + value;
-            }
-
-
-            Console.WriteLine(result);
-
-
-
-
-
-
-
+        try
+        {
+            int n1, n2;
+            n1 = Convert.ToInt32(args[0]);
+            n2 = Convert.ToInt32(args[1]);
+            int res;
+            res = n1 / n2;
+            Console.WriteLine("Result:" + res);
         }
-
-
-
-    };
-
-
-
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine("IOR: ");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("FE: ");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
 }
