@@ -291,3 +291,6 @@ packages
 /HelloWorld/bin/Debug/net7.0/HelloWorld.exe
 /HelloWorld/bin/Debug/net7.0/HelloWorld.dll
 /HelloWorld/.vs/HelloWorld/v17/.suo
+/HelloWorld/obj/HelloWorld.csproj.nuget.dgspec.json
+/HelloWorld/obj/HelloWorld.csproj.nuget.g.props
+/HelloWorld/obj/project.assets.json
