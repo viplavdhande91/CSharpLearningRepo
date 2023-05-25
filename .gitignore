@@ -274,3 +274,4 @@ _ReSharper.*
 bin
 obj
 packages
+/HelloWorld/obj/Debug/net7.0/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
