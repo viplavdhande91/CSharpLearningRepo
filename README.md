@@ -14,11 +14,11 @@
 ## Why And When To Use Interfaces?
 
 1.   
-##### IEnumerable interface also works with database calls expression less efficiently.
+### IEnumerable interface also works with database calls expression less efficiently.
 
 
 2.   
-##### IEnumerable interface also works with in-memory collection calls expression more efficiently.
+### IEnumerable interface also works with in-memory collection calls expression more efficiently.
 
 
 # C# IQueryable
