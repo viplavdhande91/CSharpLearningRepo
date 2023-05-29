@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patient xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID>232323</ID>
+  <FirstName>John</FirstName>
+  <LastName>Doe</LastName>
+  <Birthday>1990-12-30T00:00:00</Birthday>
+  <RoomNo>310</RoomNo>
+</Patient>
