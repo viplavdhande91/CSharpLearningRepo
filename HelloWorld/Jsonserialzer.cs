@@ -21,11 +21,13 @@ namespace HelloWorld
                 Birthday = new DateTime(1990, 12, 30),
                 RoomNo = 310
             };
-            // Convert Employee object to JSON format (Serialization)
+            // Serialization
             string jsonString = JsonConvert.SerializeObject(patient);
 
             Console.WriteLine("After Serializing {0}",jsonString);
 
+
+            //Deserialize
             Patient? deserializedPatient= JsonConvert.DeserializeObject<Patient>(jsonString);
 
 
