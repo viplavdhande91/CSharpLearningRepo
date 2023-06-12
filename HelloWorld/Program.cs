@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Cal
 {
 
@@ -8,7 +9,8 @@ namespace Cal
     {
 
         static void Main(string[] args) {
-
+           
+            Console.ReadLine();
 
         }
 
