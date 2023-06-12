@@ -1,4 +1,3 @@
-"# C-Learning" 
 
 ## LINQ  Reference
 
@@ -34,12 +33,22 @@
 - **Description** :  Returns the first element of a collection, or the first element that satisfies a condition. Otherwise , Returns a default value of first index.
 
 
-### FirstOrDefault :
-- **Description** :  Returns the first element of a collection, or the first element that satisfies a condition. Otherwise , Returns a default value of first index.
-
 ### Max :
 
 ```
         var studentWithLongName = studentList.Max();
 
 ```
+
+### Skip and Take :     
+ IT SKIPS FIRST TWO RECORDS
+
+```
+   selectedBooksPrice.Skip(1).Take(2); 
+
+```
+
+
+### Notes :
+- Extra Methods : 
+    -  Count(), Average(),Min(), Sum(), Last(), LastOrDefault()	
