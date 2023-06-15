@@ -29,7 +29,6 @@ namespace Cal
 
             //Console.WriteLine(selectedBooksPrice.FirstOrDefault(47.36));
 
-            // selectedBooksPrice.Skip(1).Take(2); IT SKIPS FIRST TWO RECORDS
 
 
 
