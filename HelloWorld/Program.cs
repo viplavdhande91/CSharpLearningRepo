@@ -1,44 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using static System.Console;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HelloWorld
+namespace SingletonDesignPattern
 {
-    public class Program
+    class Program
     {
-        /// Singleton Design Pattern
-
-        public static void Main()
+        static void Main(string[] args)
         {
-            var b1 = LoadBalancer.GetLoadBalancer();
-            var b2 = LoadBalancer.GetLoadBalancer();
-            var b3 = LoadBalancer.GetLoadBalancer();
-            var b4 = LoadBalancer.GetLoadBalancer();
-
-            // Confirm these are the same instance
-
-            if (b1 == b2 && b2 == b3 && b3 == b4)
-            {
-                WriteLine("Same instance\n");
-            }
-
-            // Next, load balance 15 requests for a server
-
-            var balancer = LoadBalancer.GetLoadBalancer();
-            for (int i = 0; i < 15; i++)
-            {
-                string serverName = balancer.NextServer.Name;
-                WriteLine("Dispatch request to: " + serverName);
-            }
-
-            // Wait for user
-
-            ReadKey();
+            Singleton obj1 = Singleton.MyObject();
+            obj1.mymethod();
+            Singleton obj2 = Singleton.MyObject();
+            obj2.mymethod();
+            Console.ReadLine();
         }
     }
+    sealed class Singleton
+    {
+        private Singleton()
+        {
 
-    /// <summary>
-    /// The 'Singleton' class
-    /// </summary>
-
+        }
+        public static Singleton? getinstnace = null;
+        public static Singleton MyObject()
+        {
+            if (getinstnace == null)
+            {
+                return new Singleton();
+            }
+            return getinstnace;
+        }
+        public void mymethod()
+        {
+            Console.WriteLine("This is my Method");
+        }
+    }
 }
