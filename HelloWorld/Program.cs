@@ -1,23 +1,19 @@
 ﻿using System;
+using System.Reflection;
 
-
-namespace Cal
+namespace ReflectionIntroduction
 {
-
-
-    class Maths
+    class Program
     {
+        static void Main(string[] args)
+        {
+            Type typeInfoOnString = typeof(string);
 
-        static void Main(string[] args) {
-           
-            Console.ReadLine();
+            Assembly stringAssembly = typeInfoOnString.Assembly;
+            AssemblyName stringAssemblyName = stringAssembly.GetName();
 
+            Console.WriteLine($"Assembly name: {stringAssemblyName.Name}");
+            Console.WriteLine($"Assembly version: {stringAssemblyName.Version}");
         }
-
-
-
-    };
-
-
-
+    }
 }
