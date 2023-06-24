@@ -1,1 +1,2 @@
-"# C-Learning" 
+#### Notes:
+- Diffrence added to HardCopy
