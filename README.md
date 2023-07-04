@@ -228,8 +228,10 @@ When a **constructor is created with a private specifier**, it is **not possible
 
  - One use of a private constructor is when we have only **static members.**
  - Once we provide a constructor that is either private or public or any, the compiler     will not add the parameter-less public constructor to the class.
- - In the presence of parameterless private constructor you cannot create a default constructor.
-- We can have parameters in private constructor. **YES**
+ - In the presence of a parameterless private constructor you cannot create a default constructor.
+- We can have parameters in the private constructor. **YES**
+
+
 Source Code Of Private Constructor In C#
 
 ```
