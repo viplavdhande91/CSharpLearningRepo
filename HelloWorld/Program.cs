@@ -1,10 +1,11 @@
 ﻿using System;
 namespace Cal
 {
-    public delegate void delCalc(int a, int b);
+    public delegate void DelCalc(int a, int b);
 
     class Arithmetic
     {
+
         public static void Addition(int a, int b)
         {
 
@@ -31,7 +32,7 @@ namespace Cal
         public static void Main(string[] args){
 
 
-            delCalc delc = new delCalc(Addition);
+            DelCalc delc = new DelCalc(Addition);
 
             delc += Subtraction;
 
