@@ -130,19 +130,19 @@ using System.Threading.Tasks;
 
 namespace STATIC_CONSTRUCTOR
 {
-    class person
+    class Person
     {
         public static string PersonName;
         public static int PersonAge;
 
-        static person()
+        static Person()
         {
             PersonName = "Ali";
             PersonAge = 23;
             Console.WriteLine("Static constructor invoked !!");
         }
 
-        public person()
+        public Person()
         {
             Console.WriteLine("default constructor invoked !!");
         }
@@ -157,8 +157,8 @@ namespace STATIC_CONSTRUCTOR
     {
         static void Main(string[] args)
         {
-            person umar = new person();
-            person Ali = new person();
+            Person umar = new Person();
+            Person Ali = new Person();
             Console.ReadLine();
         }
     }
