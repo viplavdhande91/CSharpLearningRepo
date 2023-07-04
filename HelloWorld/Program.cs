@@ -7,7 +7,7 @@ namespace HelloWorld
 {
 
     //PUBLISHER /NOTIFIER CLASS /SUBJECT
-    public class clsNotifier
+    public class ClassNotifier
     {
         private ArrayList objNotifications = new ArrayList();
 
@@ -40,7 +40,7 @@ namespace HelloWorld
             // the error to all the SUBSCRIBERS/OBSERVERS
 
             // Notifier/Subject to notify all the observers
-            clsNotifier objNotifier = new clsNotifier();
+            ClassNotifier objNotifier = new ClassNotifier();
 
             // Add subjects/subscribers which needs to be notified
             EmailNotification objEmailNotification = new EmailNotification();
