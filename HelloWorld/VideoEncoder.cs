@@ -30,7 +30,7 @@ namespace HelloWorld
 
 
 
-            //After Video Encoding We have ping Suscribers
+            //After Video Encoding We can ping Suscribers
 
             OnVideoEncoded(video);
 
