@@ -24,7 +24,7 @@ The singleton pattern is a design pattern that **restricts the instantiation** o
 #### Pros
 - Singleton design pattern guarantees that only one instance of the class will be available throughout the application context. This ensures that you **do not waste memory for a new object instance** when you don’t need one.
 
-- Singleton design pattern might be handy when dealing with concurrent access to resources. 
+- Singleton design pattern might be handy when dealing with **concurrent access** to resources. 
 - Singletons can also provide thready safety.
 
 #### Cons
