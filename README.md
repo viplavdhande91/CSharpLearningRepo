@@ -12,11 +12,12 @@ The singleton pattern is a design pattern that **restricts the instantiation** o
 
 ### How to implement singleton design pattern in C#
 
-▸A single constructor, that is private and parameterless.
+▸A single constructor, that is **private and parameterless.**
 
 ▸The class should be sealed.
 
-▸A static variable that holds a reference to the single created instance, if any.
+
+▸All methods and class variables should be **static**.
 
 ▸A **public static** means of getting the reference to the single created instance, creating one if necessary.
 
