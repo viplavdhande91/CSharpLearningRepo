@@ -1,7 +1,7 @@
 
 ## Event Handling
 
-1. EventHandler is a standard class which method signature is as given below
+1. EventHandler is a standard class whose method signature is as given below
 
 ```
 public delegate void EventHandler(object? sender, EventArgs e);
@@ -23,18 +23,18 @@ public delegate void EventHandler(object? sender, EventArgs e);
 
 ```
 
-4. In example taken,
+4. In the example taken,
 
  
 ##### VideoEncoder is Publisher
 
-##### MessageService,EmailService is Subscriber
+##### MessageService, EmailService is Subscriber
 
 
 
 ## Standard Practices
 
-1. Published Subscription actuvation method must have protected virtual void keyowrds
+1. Published Subscription activation method must have protected virtual void keywords
 
 ```
 protected virtual void OnVideoEncoded(Video video)
@@ -46,7 +46,7 @@ protected virtual void OnVideoEncoded(Video video)
 
 1. An event is a wrapper around a delegate. **It depends on the delegate.**
 
-2. Use **"event"** keyword with delegate type variable to declare an event.
+2. Use the **"event"** keyword with the delegate type variable to declare an event.
 
 3. Use built-in delegate EventHandler or EventHandler<TEventArgs> for common events.
 
@@ -59,8 +59,8 @@ protected virtual void OnVideoEncoded(Video video)
 
 7. Pass event data using EventHandler<TEventArgs>.
 
-8. Derive EventArgs base class to create custom event data class.
-e.g Defined in our code.
+8. Derive EventArgs base class to create a custom event data class.
+e.g. Defined in our code.
 
 9. Events can be declared static, virtual, sealed, and abstract.
 
