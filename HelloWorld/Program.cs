@@ -19,9 +19,9 @@ namespace Cal
 
     class ProxyService : IService
     {
-        private IService _service;
+        private ConcreteService _service;
 
-        public ProxyService(IService serivce)
+        public ProxyService(ConcreteService serivce)
         {
             _service = serivce;
         }
@@ -44,8 +44,8 @@ namespace Cal
 
         static void Main(string[] args) {
 
-            IService concreteService = new ConcreteService();
-            IService proxyService = new ProxyService(concreteService);
+            ConcreteService concreteService = new ConcreteService();
+            ProxyService proxyService = new ProxyService(concreteService);
 
             proxyService.Login(15);
 
