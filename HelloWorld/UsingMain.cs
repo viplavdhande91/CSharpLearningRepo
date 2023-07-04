@@ -11,7 +11,7 @@ namespace HelloWorld
         static void DoWork()
         {
             //create object using "using declaration"
-            using IDisposableDemo s = new IDisposableDemo();
+            using DisposableDemo s = new DisposableDemo();
             s.DisplayDataFromDatabase();
 
 

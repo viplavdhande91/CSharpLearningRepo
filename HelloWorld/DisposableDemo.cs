@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    internal class IDisposableDemo : System.IDisposable
+    internal class DisposableDemo : System.IDisposable
     {
         //constructor
-        public IDisposableDemo()
+        public DisposableDemo()
         {
             Console.WriteLine("Database connected.");
         }

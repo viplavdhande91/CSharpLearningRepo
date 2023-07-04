@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace HelloWorld
 {
-    internal class IDisposableMain
+    internal class DisposableMain
     {
         static void Main(string[] args)
         {
             //create object using "using structure"
-            using (IDisposableDemo s = new IDisposableDemo())
+            using (DisposableDemo s = new DisposableDemo())
             {
 
                 s.DisplayDataFromDatabase();
