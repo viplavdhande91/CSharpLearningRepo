@@ -80,30 +80,31 @@ namespace ConstructorsInCsharp
 The following code shows how static constructors are created and invoked. 
 ```
 using System;
- 
+
 class Multiplication
-{ 
-   staticint _valueOne = 10; 
-   staticint _product; 
-  
-   static Multiplication() 
-   { 
-   Console.WriteLine(“Static Constructor initialized”); 
-   _product = _valueOne * _valueOne; 
+{
+    static int _valueOne = 10;
+    static int _product;
 
-   }
+    static Multiplication()
+    {
+        Console.WriteLine("Static Constructor initialized");
+        _product = _valueOne * _valueOne;
 
-   public static void Method() 
-   { 
-      Console.WriteLine(“Value of product = “ + _product); 
+    }
 
-   } 
+    public static void Method()
+    {
+        Console.WriteLine("Value of product = " +_product);
 
-   static void Main(string[] args) 
-   { 
-      Multiplication.Method(); 
-   }
+    }
+
+    static void Main(string[] args)
+    {
+        Multiplication.Method();
+    }
 }
+
 
 ```
 In Above Code,
