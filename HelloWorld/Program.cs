@@ -10,31 +10,33 @@ namespace SingletonDesignPattern
     {
         static void Main(string[] args)
         {
-            Singleton obj1 = Singleton.MyObject();
-            obj1.mymethod();
-            Singleton obj2 = Singleton.MyObject();
-            obj2.mymethod();
+            Singleton.Hit();
+            Console.WriteLine(Singleton.getTotalHits().ToString());
+
+
+            Singleton.Hit();
+            Console.WriteLine(Singleton.getTotalHits().ToString());
+
+             Singleton.Hit();
+            Console.WriteLine(Singleton.getTotalHits().ToString());
+
             Console.ReadLine();
         }
     }
     sealed class Singleton
     {
+        public static int intCounter;
         private Singleton()
         {
-
+            // This is a private constructor
         }
-        public static Singleton? getinstnace = null;
-        public static Singleton MyObject()
+        public static void Hit()
         {
-            if (getinstnace == null)
-            {
-                return new Singleton();
-            }
-            return getinstnace;
+            intCounter++;
         }
-        public void mymethod()
+        public static int getTotalHits()
         {
-            Console.WriteLine("This is my Method");
+            return intCounter;
         }
     }
 }
