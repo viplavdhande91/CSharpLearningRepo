@@ -1,13 +1,8 @@
 ﻿using System;
 
-
 namespace Cal
-{
-
-
-    class Maths
+{   class Maths
     {
-
 
         public static int fibonacci(int number) {
 
@@ -20,17 +15,9 @@ namespace Cal
             return fibonacci(number - 1) + fibonacci(number-2);
             }
 
-        
-        
-        
-        
+          
         }
         
-
-
-
-
-
         static void Main(string[] args) {
             Console.Write("Enter the length of the Fibonacci Series: ");
             int length = Convert.ToInt32(Console.ReadLine());
