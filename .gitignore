@@ -275,3 +275,9 @@ bin/
 
 obj/
 packages
+/HelloWorld/obj/Debug/net7.0/HelloWorld.AssemblyInfo.cs
+/HelloWorld/obj/Debug/net7.0/HelloWorld.AssemblyInfoInputs.cache
+/HelloWorld/obj/Debug/net7.0/HelloWorld.assets.cache
+/HelloWorld/obj/Debug/net7.0/HelloWorld.csproj.AssemblyReference.cache
+/HelloWorld/obj/Debug/net7.0/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+/HelloWorld/.vs/HelloWorld/v17/.suo
