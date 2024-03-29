@@ -52,3 +52,12 @@
 ### Notes :
 - Extra Methods : 
     -  Count(), Average(),Min(), Sum(), Last(), LastOrDefault()	
+
+### ADVANTAGES :
+- No need to learn a new language
+ 
+- It’s a time-saver interms of object retrival
+- It’s more Readable
+
+- Error check before run-time [At Compile time it checks of objects]
+- **Less coding**  : reduces amount of code
