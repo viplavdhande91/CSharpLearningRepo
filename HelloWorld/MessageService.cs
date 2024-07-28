@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 namespace HelloWorld
 {
     internal class MessageService
-    {
+    {        //EVENT HANDLER METHOD
 
-        public void SendService(object? video, VideoEventArgs e)
+        public void SendService(Object? video, VideoEventArgs e)
         {
-
             Console.WriteLine("Message is sending...");
-
 
         }
     }

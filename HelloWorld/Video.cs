@@ -8,11 +8,10 @@ namespace HelloWorld
 {
     internal class Video
     {
-        public string videoName;
-
+        public string _name;
         public Video(string name)
         {
-            this.videoName = name;
+            _name = name;
         }
     }
 }
