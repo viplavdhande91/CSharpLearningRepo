@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace HelloWorld
 {
     internal class MessageService
-    {        //EVENT HANDLER METHOD
-
+    {   
+        //EVENT HANDLER METHOD
         public void SendService(Object? video, VideoEventArgs e)
         {
             Console.WriteLine("Message is sending...");

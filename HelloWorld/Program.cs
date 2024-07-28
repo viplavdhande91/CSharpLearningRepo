@@ -16,7 +16,6 @@ namespace EventHandling
             MessageService? messageService   = new MessageService();
             EmailService? emailService = new EmailService();
 
-
             videoEncoder.videoEncodedevent += messageService.SendService;
             videoEncoder.videoEncodedevent += emailService.SendService;
 
