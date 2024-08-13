@@ -1,41 +1,15 @@
-﻿using System;
+﻿using FactoryMethod;
 
-namespace Cal
-{   class Maths
-    {
+Console.Title = "Factory Method";
 
-        public static int fibonacci(int number) {
+var factories = new List<DiscountFactory> {
+    new CodeDiscountFactory(Guid.NewGuid()),
+    new CountryDiscountFactory("BE") };
 
-            if (number == 0 || number == 1)
-                return number;
-
-            else { 
-            
-            
-            return fibonacci(number - 1) + fibonacci(number-2);
-            }
-
-          
-        }
-        
-        static void Main(string[] args) {
-            Console.Write("Enter the length of the Fibonacci Series: ");
-            int length = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < length; i++)
-            {
-                Console.Write("{0} ", fibonacci(i));
-            }
-            Console.ReadKey();
-
-
-
-
-        }
-
-
-
-    };
-
-
-
+foreach (var factory in factories)
+{
+    var discountService = factory.CreateDiscountService();
+    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"coming from {discountService}");
 }
+
+Console.ReadKey();
