@@ -10,33 +10,60 @@ namespace SingletonDesignPattern
     {
         static void Main(string[] args)
         {
-            Singleton.Hit();
-            Console.WriteLine(Singleton.getTotalHits().ToString());
+            // call the property getter twice
+            var instance1 = Logger.Instance;
+            var instance2 = Logger.Instance;
 
+            if (instance1 == instance2 && instance2 == Logger.Instance)
+            {
+                Console.WriteLine("Instances are the same.");
+                Console.ReadLine();
+            }
 
-            Singleton.Hit();
-            Console.WriteLine(Singleton.getTotalHits().ToString());
-
-             Singleton.Hit();
-            Console.WriteLine(Singleton.getTotalHits().ToString());
-
-            Console.ReadLine();
+            instance1.Log($"Message from {nameof(instance1)}");
+            // or
+            instance1.Log($"Message from {nameof(instance2)}");
+            // or
+            Logger.Instance.Log($"Message from {nameof(Logger.Instance)}");
         }
     }
-    sealed class Singleton
+    /// <summary>
+    /// Singleton
+    /// </summary>
+    public class Logger
     {
-        public static int intCounter;
-        private Singleton()
+        //private static Logger? _instance;
+        private static readonly Lazy<Logger> _lazyLogger = new Lazy<Logger>(() => new Logger());
+
+        /// <summary>
+        /// Instance
+        /// </summary>
+        public static Logger Instance
         {
-            // This is a private constructor
+            get { return _lazyLogger.Value; } // This is Object Instantiation.
+            //get
+            //{
+            //    if (_instance == null)
+            //    {
+            //        _instance = new Logger();
+            //    }
+            //    return _instance;
+            //}
         }
-        public static void Hit()
+
+        protected Logger()
         {
-            intCounter++;
+            Console.WriteLine("Constructor invoked");
+            Console.ReadLine();
         }
-        public static int getTotalHits()
+
+        /// <summary>
+        /// SingletonOperation
+        /// </summary> 
+        public void Log(string message)
         {
-            return intCounter;
+            Console.WriteLine($"Message to log: {message}");
+            Console.ReadLine();
         }
     }
 }
