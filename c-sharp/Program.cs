@@ -1,15 +1,20 @@
-﻿using FactoryMethod;
+﻿using BuilderPattern;
 
-Console.Title = "Factory Method";
+Console.Title = "Builder";
 
-var factories = new List<DiscountFactory> {
-    new CodeDiscountFactory(Guid.NewGuid()),
-    new CountryDiscountFactory("BE") };
+var garage = new Garage();
 
-foreach (var factory in factories)
-{
-    var discountService = factory.CreateDiscountService();
-    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"coming from {discountService}");
-}
+var miniBuilder = new MiniBuilder();
+var bmwBuilder = new BMWBuilder();
+
+garage.Construct(miniBuilder);
+Console.WriteLine(miniBuilder.Car.ToString());
+// or: 
+garage.Show();
+
+garage.Construct(bmwBuilder);
+Console.WriteLine(bmwBuilder.Car.ToString());
+// or: 
+garage.Show();
 
 Console.ReadKey();

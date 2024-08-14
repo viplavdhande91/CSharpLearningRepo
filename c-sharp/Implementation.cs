@@ -1,103 +1,117 @@
-﻿namespace FactoryMethod
+﻿using System.Text;
+
+namespace BuilderPattern
 {
     /// <summary>
     /// Product
     /// </summary>
-    public abstract class DiscountService
+    public class Car
     {
-        public abstract int DiscountPercentage { get; }
-        public override string ToString() { return GetType().Name; }
+        private readonly List<string> _parts = new();
+        private readonly string _carType;
 
-    }
-
-    /// <summary>
-    /// ConcreteProduct1
-    /// </summary>
-    public class CountryDiscountService : DiscountService
-    {
-        private readonly string _countryIdentifier;
-
-        public CountryDiscountService(string countryIdentifier)
+        public Car(string carType)
         {
-            _countryIdentifier = countryIdentifier;
+            _carType = carType;
         }
 
-        public override int DiscountPercentage
+        public void AddPart(string part)
         {
-            get
+            _parts.Add(part);
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            foreach (string part in _parts)
             {
-                switch (_countryIdentifier)
-                {
-                    // if you're from Belgium, you get a better discount :)
-                    case "BE":
-                        return 40;
-                    default:
-                        return 10;
-                }
+                sb.Append($"Car of type {_carType} has part {part}. \n");
             }
+
+            return sb.ToString();
         }
     }
 
     /// <summary>
-    /// ConcreteProduct2
+    /// Builder  
     /// </summary>
-    public class CodeDiscountService : DiscountService
+    public abstract class CarBuilder
     {
-        private readonly Guid _couponCode;
+        public Car Car { get; private set; }
 
-        public CodeDiscountService(Guid couponCode)
+        public CarBuilder(string carType)
         {
-            _couponCode = couponCode;
+            Car = new Car(carType);
         }
 
-        public override int DiscountPercentage
+        public abstract void BuildEngine();
+        public abstract void BuildFrame();
+    }
+
+    /// <summary>
+    /// ConcreteBuilder1 class
+    /// </summary>
+    public class MiniBuilder : CarBuilder
+    {
+        public MiniBuilder(): base("Mini")
         {
-            // each code returns the same fixed percentage, but a couponCode is only 
-            // valid once - include a check to so whether the couponCode's been used before
-            // ... 
-            get => 15;
+        }
+
+        public override void BuildEngine()
+        {
+            Car.AddPart("'not a V8'");
+        }
+
+        public override void BuildFrame()
+        {
+            Car.AddPart("'3-door with stripes'");
         }
     }
 
     /// <summary>
-    /// Creator
+    /// ConcreteBuilder2 class
     /// </summary>
-    public abstract class DiscountFactory
+    public class BMWBuilder : CarBuilder
     {
-        public abstract DiscountService CreateDiscountService();
-    }
-
-    /// <summary>
-    /// ConcreteCreator1
-    /// </summary>
-    public class CountryDiscountFactory : DiscountFactory
-    {
-        private readonly string _countryIdentifier;
-        public CountryDiscountFactory(string countryIdentifier)
+        // Invoke base class constructor
+        public BMWBuilder(): base("BMW")
         {
-            _countryIdentifier = countryIdentifier;
         }
 
-        public override DiscountService CreateDiscountService()
+        public override void BuildEngine()
         {
-            return new CountryDiscountService(_countryIdentifier);
+            Car.AddPart("'a fancy V8 engine'");
+        }
+
+        public override void BuildFrame()
+        {
+            Car.AddPart("'5-door with metallic finish'");
         }
     }
 
     /// <summary>
-    /// ConcreteCreator2
+    /// Director
     /// </summary>
-    public class CodeDiscountFactory : DiscountFactory
+    public class Garage
     {
-        private readonly Guid _code;
+        private CarBuilder? _builder;
 
-        public CodeDiscountFactory(Guid code)
+        public Garage()
         {
-            _code = code;
         }
-        public override DiscountService CreateDiscountService()
+
+        public void Construct(CarBuilder builder)
         {
-            return new CodeDiscountService(_code);
+            _builder = builder;
+
+            _builder.BuildEngine();
+            _builder.BuildFrame();
         }
+
+        public void Show()
+        {
+            Console.WriteLine(_builder?.Car.ToString());
+        }
+
     }
 }
