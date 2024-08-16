@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HelloWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace AsyncAwaitDemo
     {
         static void Main()
         {
+            //Stocks.stocksMethod();
             Task1();
             Task2();
             Task3();
