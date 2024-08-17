@@ -127,59 +127,94 @@ using System.Threading.Tasks;
 
 
 
+//class Program
+//{
+//    static void Main(string[] args)
+//    {
+//        // Create a CancellationTokenSource
+//        CancellationTokenSource cts = new CancellationTokenSource(3000);
+
+
+//        try
+//        {
+//            // Pass the CancellationToken to the task
+//            Task task = Task.Run(() => PerformTask(5, 5000, cts.Token), cts.Token);
+//            task.Wait();
+//        }
+//        catch (AggregateException ex)
+//        {
+//            foreach (var inner in ex.InnerExceptions)
+//            {
+//                if (inner is TaskCanceledException)
+//                {
+//                    Console.WriteLine("Task was canceled.");
+//                }
+//                else
+//                {
+//                    Console.WriteLine($"Exception: {inner.Message}");
+//                }
+//            }
+//        }
+//        finally
+//        {
+//            cts.Dispose();
+//        }
+
+//        Console.WriteLine("Main program has finished.");
+//    }
+
+//    static void PerformTask(int input, int delay, CancellationToken token)
+//    {
+//        Console.WriteLine($"Task started with input {input}.");
+
+//        for (int i = 0; i < delay / 1000; i++)
+//        {
+//            // Check if cancellation was requested
+//            if (token.IsCancellationRequested)
+//            {
+//                Console.WriteLine("Cancellation requested. Exiting task...");
+//            }
+
+//            // Simulate work
+//            Console.WriteLine($"Working...{i+1}");
+//            Task.Delay(1000).Wait();
+//        }
+
+//        Console.WriteLine($"Task completed");
+//    }
+//}
+
+
+using System.Collections.Concurrent;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics;
+
 class Program
 {
     static void Main(string[] args)
     {
-        // Create a CancellationTokenSource
-        CancellationTokenSource cts = new CancellationTokenSource(3000);
+        //Console.WriteLine("Thread Count ", Thread.CurrentThread.ManagedThreadId);
+        ConcurrentBag<int> bag = new ConcurrentBag<int>();
 
+        // Parallel task to add items to the bag
+        Parallel.For(0, 5, i =>
+        {
+            bag.Add(i);
+            //Console.WriteLine($"Thread id { Thread.CurrentThread.ManagedThreadId}");
+            Console.WriteLine($"Added {i}");
+        });
 
-        try
+        // Parallel task to read items from the bag
+        Parallel.For(0, 5, i =>
         {
-            // Pass the CancellationToken to the task
-            Task task = Task.Run(() => PerformTask(5, 5000, cts.Token), cts.Token);
-            task.Wait();
-        }
-        catch (AggregateException ex)
-        {
-            foreach (var inner in ex.InnerExceptions)
+            if (bag.TryTake(out int result))
             {
-                if (inner is TaskCanceledException)
-                {
-                    Console.WriteLine("Task was canceled.");
-                }
-                else
-                {
-                    Console.WriteLine($"Exception: {inner.Message}");
-                }
+                //Console.WriteLine($"Thread id extract {Thread.CurrentThread.ManagedThreadId}");
+                Console.WriteLine($"Took outside {result}");
             }
-        }
-        finally
-        {
-            cts.Dispose();
-        }
+        });
 
-        Console.WriteLine("Main program has finished.");
-    }
-
-    static void PerformTask(int input, int delay, CancellationToken token)
-    {
-        Console.WriteLine($"Task started with input {input}.");
-
-        for (int i = 0; i < delay / 1000; i++)
-        {
-            // Check if cancellation was requested
-            if (token.IsCancellationRequested)
-            {
-                Console.WriteLine("Cancellation requested. Exiting task...");
-            }
-
-            // Simulate work
-            Console.WriteLine($"Working...{i+1}");
-            Task.Delay(1000).Wait();
-        }
-
-        Console.WriteLine($"Task completed");
+        // Final count of items in the bag
+        Console.WriteLine($"Final count of items in the bag: {bag.Count}");
     }
 }
