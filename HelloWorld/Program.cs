@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 //class Program
@@ -125,96 +126,48 @@ using System.Threading.Tasks;
 //}
 
 
-
-
-//class Program
-//{
-//    static void Main(string[] args)
-//    {
-//        // Create a CancellationTokenSource
-//        CancellationTokenSource cts = new CancellationTokenSource(3000);
-
-
-//        try
-//        {
-//            // Pass the CancellationToken to the task
-//            Task task = Task.Run(() => PerformTask(5, 5000, cts.Token), cts.Token);
-//            task.Wait();
-//        }
-//        catch (AggregateException ex)
-//        {
-//            foreach (var inner in ex.InnerExceptions)
-//            {
-//                if (inner is TaskCanceledException)
-//                {
-//                    Console.WriteLine("Task was canceled.");
-//                }
-//                else
-//                {
-//                    Console.WriteLine($"Exception: {inner.Message}");
-//                }
-//            }
-//        }
-//        finally
-//        {
-//            cts.Dispose();
-//        }
-
-//        Console.WriteLine("Main program has finished.");
-//    }
-
-//    static void PerformTask(int input, int delay, CancellationToken token)
-//    {
-//        Console.WriteLine($"Task started with input {input}.");
-
-//        for (int i = 0; i < delay / 1000; i++)
-//        {
-//            // Check if cancellation was requested
-//            if (token.IsCancellationRequested)
-//            {
-//                Console.WriteLine("Cancellation requested. Exiting task...");
-//            }
-
-//            // Simulate work
-//            Console.WriteLine($"Working...{i+1}");
-//            Task.Delay(1000).Wait();
-//        }
-
-//        Console.WriteLine($"Task completed");
-//    }
-//}
-
-
-using System.Collections.Concurrent;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics;
-
-class Program
+namespace Csharp8Features
 {
-    static void Main(string[] args)
+    public class AsynchronousStreams
     {
-        //Console.WriteLine("Thread Count ", Thread.CurrentThread.ManagedThreadId);
-        ConcurrentBag<int> bag = new ConcurrentBag<int>();
-
-        // Parallel task to add items to the bag
-        Parallel.For(0, 5, i =>
+        static async Task Main(string[] args)
         {
-            bag.Add(i);
-            //Console.WriteLine($"Thread id { Thread.CurrentThread.ManagedThreadId}");
-            Console.WriteLine($"Added {i}");
-        });
+            Console.WriteLine($"Start: {DateTime.Now.ToLongTimeString()}");
 
-        // Parallel task to read items from the bag
-        Parallel.For(0, 5, i =>
-        {
-            if (bag.TryTake(out int result))
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.CancelAfter(millisecondsDelay: 3000);
+
+            var numbersAsync = GetNumbersAsync(1, 10, cancellationTokenSource.Token);
+
+            await foreach (var number in numbersAsync)
             {
-                //Console.WriteLine($"Thread id extract {Thread.CurrentThread.ManagedThreadId}");
-                Console.WriteLine($"Took outside {result}");
+                Console.WriteLine(number);
             }
-        });
 
-        // Final count of items in the bag
-        Console.WriteLine($"Final count of items in the bag: {bag.Count}");
+            Console.WriteLine($"End: {DateTime.Now.ToLongTimeString()}");
+            Console.ReadKey();
+        }
+
+        public static async IAsyncEnumerable<int> GetNumbersAsync(int start, int end, [EnumeratorCancellation] CancellationToken token = default)
+        {
+            var random = new Random();
+
+            for (int i = start; i < end; i++)
+            {
+                if (token.IsCancellationRequested)
+                {
+                    Console.WriteLine("Cancellation has been requested...");
+                    // Perform cleanup if necessary.
+                    //...
+                    // Terminate the operation.
+                    break;
+                }
+                await Task.Delay(random.Next(500, 1500));
+                yield return i;
+            }
+        }
     }
 }
+
+
+
