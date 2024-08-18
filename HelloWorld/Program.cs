@@ -1,59 +1,60 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Threading;
-//using System.Threading.Tasks;
-
-//namespace AsynchronousProgramming
-//{
-//    class Program
-//    {
-//        static async Task Main(string[] args)
-//        {
-//            await foreach (var name in GenerateNames())
-//            {
-//                Console.WriteLine(name);
-//            }
-
-//            Console.ReadKey();
-//        }
-
-//        private static async IAsyncEnumerable<string> GenerateNames()
-//        {
-//            yield return "Anurag";
-//            yield return "Pranaya";
-//            await Task.Delay(TimeSpan.FromSeconds(3));
-//            yield return "Sambit";
-//        }
-//    }
-//}
-
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
-
+using System.IO;
 namespace Csharp8Features
 {
-    public class NullableReferenceTypes
+    class AsynchronousDisposable
     {
         static async Task Main(string[] args)
         {
-            await foreach (var number in GenerateSequence())
+            await using (var disposableObject = new Sample())
             {
-                Console.WriteLine(number);
-                Console.WriteLine("Thread id in Main() {0}", Thread.CurrentThread.ManagedThreadId);
+                Console.WriteLine("Welcome to C#.NET");
+            }// DisposeAsync method called implicitly
 
-            }
+            Console.WriteLine("Main Method End");
         }
-        public static async System.Collections.Generic.IAsyncEnumerable<int> GenerateSequence()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                await Task.Delay(300);
+    }
 
-                yield return i;
+    public class Sample : IDisposable, IAsyncDisposable
+    {
+        private Stream? disposableResource = new MemoryStream();
+        private Stream? asyncDisposableResource = new MemoryStream();
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+            Console.WriteLine("Dispose Clean-up the Memory!");
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await DisposeAsyncCore().ConfigureAwait(false);
+            Dispose();
+            GC.SuppressFinalize(this);
+            Console.WriteLine("DisposeAsync Clean-up the Memory!");
+        }
+
+        protected virtual async ValueTask DisposeAsyncCore()
+        {
+            if (asyncDisposableResource != null)
+            {
+                await asyncDisposableResource.DisposeAsync().ConfigureAwait(false);
             }
+
+            if (disposableResource is IAsyncDisposable disposable)
+            {
+                await disposable.DisposeAsync().ConfigureAwait(false);
+            }
+            else
+            {
+                disposableResource?.Dispose();
+            }
+
+            asyncDisposableResource = null;
+            disposableResource = null;
+
+            Console.WriteLine("Virtual DisposeAsyncCore Clean-up the Memory");
         }
     }
 }
-
-
