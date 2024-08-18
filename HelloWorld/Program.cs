@@ -1,46 +1,59 @@
-﻿using System;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Threading;
+//using System.Threading.Tasks;
 
-//namespace Cal
+//namespace AsynchronousProgramming
 //{
-
-//    class Maths
+//    class Program
 //    {
+//        static async Task Main(string[] args)
+//        {
+//            await foreach (var name in GenerateNames())
+//            {
+//                Console.WriteLine(name);
+//            }
 
-//        public static void GetNextName(ref int id)
-//        {
-//        id += 1;
-//        }
-//        static void Main(string[] args)
-//        {
-//            int i = 1;
-//            Console.WriteLine("Previous value of integer i:" + i.ToString());
-//             GetNextName(ref i);
-//            Console.WriteLine("Current value of integer i:" + i.ToString());
+//            Console.ReadKey();
 //        }
 
-//    };
-
+//        private static async IAsyncEnumerable<string> GenerateNames()
+//        {
+//            yield return "Anurag";
+//            yield return "Pranaya";
+//            await Task.Delay(TimeSpan.FromSeconds(3));
+//            yield return "Sambit";
+//        }
+//    }
 //}
 
 
-namespace Cal
+using System;
+using System.Threading.Tasks;
+
+namespace Csharp8Features
 {
-    class Maths
+    public class NullableReferenceTypes
     {
-        public static void GetNextName(out int id, out int jd)
+        static async Task Main(string[] args)
         {
+            await foreach (var number in GenerateSequence())
+            {
+                Console.WriteLine(number);
+                Console.WriteLine("Thread id in Main() {0}", Thread.CurrentThread.ManagedThreadId);
 
-            id = 1;
-            jd = 2;
-
+            }
         }
-        static void Main(string[] args)
+        public static async System.Collections.Generic.IAsyncEnumerable<int> GenerateSequence()
         {
-            int id;
-            int jd;
-            GetNextName(out id, out jd);
-            Console.WriteLine($"{id}   {jd}");
-        }
+            for (int i = 0; i < 10; i++)
+            {
+                await Task.Delay(300);
 
-    };
+                yield return i;
+            }
+        }
+    }
 }
+
+
