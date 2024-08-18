@@ -67,5 +67,11 @@ Nested `ContinueWith` refers to the chaining of multiple continuation tasks, whe
 
 ---
 
+## ConfigureAwait Method
+The ConfigureAwait method Configures **how awaits on the tasks returned from an async iteration are performed**. true to capture and marshal back to the current context; otherwise, false.
 
+#### Which do I use, ConfigureAwait True or False?
+The direct answer to this question is:
 
+- If you are writing **code for the UI**, use ConfigureAwait(true). (Switch to and fro between **UI** (Consumer Thread) and **Producer Thread**)
+- If you are writing code in a library that will be shared, use ConfigureAwait(false)

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
+
+//WhenAll
 //class Program
 //{
 //    static async Task Main(string[] args)
@@ -34,7 +36,7 @@ using System.Threading.Tasks;
 //    }
 //}
 
-
+//WhenAny
 
 //class Program
 //{
@@ -63,6 +65,9 @@ using System.Threading.Tasks;
 //    }
 //}
 
+
+
+// Result
 
 //class Program
 //{
@@ -101,6 +106,9 @@ using System.Threading.Tasks;
 //}
 
 
+
+//ContinueWith
+
 //public class ResultExample
 //{
 //    public static async Task Main()
@@ -126,6 +134,56 @@ using System.Threading.Tasks;
 //}
 
 
+
+// CancellationTokenSource
+
+//namespace Csharp8Features
+//{
+//    public class AsynchronousStreams
+//    {
+//        static async Task Main(string[] args)
+//        {
+//            Console.WriteLine($"Start: {DateTime.Now.ToLongTimeString()}");
+
+//            var cancellationTokenSource = new CancellationTokenSource();
+//            cancellationTokenSource.CancelAfter(millisecondsDelay: 3000);
+
+//            var numbersAsync = GetNumbersAsync(1, 10, cancellationTokenSource.Token);
+
+//            await foreach (var number in numbersAsync)
+//            {
+//                Console.WriteLine(number);
+//            }
+
+//            Console.WriteLine($"End: {DateTime.Now.ToLongTimeString()}");
+//            Console.ReadKey();
+//        }
+
+//        public static async IAsyncEnumerable<int> GetNumbersAsync(int start, int end, [EnumeratorCancellation] CancellationToken token = default)
+//        {
+//            var random = new Random();
+
+//            for (int i = start; i < end; i++)
+//            {
+//                if (token.IsCancellationRequested)
+//                {
+//                    Console.WriteLine("Cancellation has been requested...");
+//                    // Perform cleanup if necessary.
+//                    //...
+//                    // Terminate the operation.
+//                    break;
+//                }
+//                await Task.Delay(random.Next(500, 1500));
+//                yield return i;
+//            }
+//        }
+//    }
+//}
+
+
+
+// ConfigureAwait
+
 namespace Csharp8Features
 {
     public class AsynchronousStreams
@@ -133,17 +191,13 @@ namespace Csharp8Features
         static async Task Main(string[] args)
         {
             Console.WriteLine($"Start: {DateTime.Now.ToLongTimeString()}");
-
             var cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.CancelAfter(millisecondsDelay: 3000);
-
-            var numbersAsync = GetNumbersAsync(1, 10, cancellationTokenSource.Token);
-
+            var numbersAsync = GetNumbersAsync(1, 10, cancellationTokenSource.Token).ConfigureAwait(false);
             await foreach (var number in numbersAsync)
             {
                 Console.WriteLine(number);
             }
-
             Console.WriteLine($"End: {DateTime.Now.ToLongTimeString()}");
             Console.ReadKey();
         }
@@ -168,6 +222,3 @@ namespace Csharp8Features
         }
     }
 }
-
-
-
