@@ -1,5 +1,4 @@
-﻿using HelloWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,57 +11,27 @@ namespace AsyncAwaitDemo
     {
         static void Main()
         {
-            //Stocks.stocksMethod();
-            Task1();
-            Task2();
-            Task3();
-            Task4();
+            IProgress<int> p = new Progress<int>(progress =>
+            {
+                Console.WriteLine("Running Step: {0}", progress);
+            });
+            LongJob(p);
             Console.ReadLine();
+
         }
 
-        public static async void Task1()
+        public static void LongJob(IProgress<int> progress)
         {
-            await Task.Run(() =>
+            var max = 10;
+            for (int i = 0; i < max; i++)
             {
-                Console.WriteLine("Task 1 Starting..");
-                Thread.Sleep(4000);
-                Console.WriteLine("Task 1 Completed..");
-            });
-            Console.WriteLine("Hello Adil....");
+                Task.Delay(1000).Wait();
+                
+                progress.Report(i);
+                
+            }
         }
 
-        public static async void Task2()
-        {
-            await Task.Run(() =>
-            {
-                Console.WriteLine("Task 2 Starting..");
-                Thread.Sleep(2000);
-                Console.WriteLine("Task 2 Completed..");
-            });
 
-        }
-
-        public static async void Task3()
-        {
-            await Task.Run(() =>
-            {
-                Console.WriteLine("Task 3 Starting..");
-                Thread.Sleep(5000);
-                Console.WriteLine("Task 3 Completed..");
-            });
-
-
-        }
-
-        public static async void Task4()
-        {
-            await Task.Run(() =>
-            {
-                Console.WriteLine("Task 4 Starting..");
-                Thread.Sleep(1000);
-                Console.WriteLine("Task 4 Completed..");
-            });
-
-        }
     }
 }

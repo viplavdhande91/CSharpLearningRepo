@@ -1,67 +1,22 @@
-### Creating Your own Asynchronous method
+### IProgress Interface
 
-- Do not write **async void** combination for simple asynchronous method . (Allowed in cases of Event handlers async method)
-```csharp
-private async void Getstocks(){
-    
-}
+- IProgress<T> can be used to report progress of **some procedure** to **another procedure**. This example shows how you can create a basic method that reports its progress.
 
-```
-- the Correct way is to go with "async Task" This will automatically have a Task returned without explicitly having to return anything.Compiler does that for Developer automatically .The Task is generated and automatically returned to caller method.
+### Benefit
+-  Long-running operations are typically set up as asynchronous methods to prevent the application from blocking these long processes. In this scenario, it is helpful to have a mechanism to report the progress back to the user, to give them an expectation of the running time. The IProgress interface can be used for that purpose.
 
+### Note:
 
-```csharp
-private async Task Getstocks(){
-
-}
-
-```
-- Never block and asynchromous operation by calling ```Result``` or ```Wait()``` . It could lead to deadlock .
-
-- Use async and await all the way up the chain
-### Exceptions Handling
-
-- Never Handle expections using async void . The Exception occurs and cannot be able to handle .
- - Solution : Use **async Task** only
+- Using IProgress
+It's important to note that the **System.Progress<T>** class does not have the **Report()** method available on it. This method was implemented explicitly from the IProgress<T> interface, and therefore must be called on a Progress<T> when it's cast to an IProgress<T>.
 
 ```csharp
+var p1 = new Progress<int>();
+p1.Report(1); //compiler error, Progress does not contain method 'Report'
 
-namespace HelloWorld
-{
-    public class Class1
-    {
+IProgress<int> p2 = new Progress<int>();
+p2.Report(2); //works
 
-        public static void demo()
-        {
-            getJsonData();
-        }
-
-        public static async void getJsonData()
-        {
-            List<int> arr = new List<int>() { 10, 22, 33, 44, 55 };
-            try
-            {
-
-                for (int i = 0;i < 10;i++) { 
-
-                    Console.WriteLine(arr[i]);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                int x = 5;
-                throw ;
-            }
-        }
-    }
-
-}
-
-
-       /*
-       
-       Exception will occur and code will break
-       
-       */ 
+var p3 = new Progress<int>();
+((IProgress<int>)p3).Report(3); //works
 ```
