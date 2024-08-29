@@ -2,14 +2,19 @@
 
 Console.Title = "Factory Method";
 
-var factories = new List<DiscountFactory> {
-    new CodeDiscountFactory(Guid.NewGuid()),
-    new CountryDiscountFactory("BE") };
+KnifeFactory factory = new KnifeFactory();
 
-foreach (var factory in factories)
-{
-    var discountService = factory.CreateDiscountService();
-    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"coming from {discountService}");
-}
+IKnife chefKnife = factory.CreateKnife("chef");
+chefKnife.Sharpen();
+chefKnife.Polish();
+chefKnife.Package();
+
+Console.WriteLine();
+
+IKnife steakKnife = factory.CreateKnife("steak");
+steakKnife.Sharpen();
+steakKnife.Polish();
+steakKnife.Package();
+
 
 Console.ReadKey();

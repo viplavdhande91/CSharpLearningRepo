@@ -8,9 +8,3 @@
 - **Difficulty in Testing**: Testing components based on specific implementations might be tricky. Using a factory allows you to simply change out implementations for testing, making your code more testable and reusable.
 - **Scalability Issues**: As your application expands, managing object creation directly in client code can become inefficient. The Factory Design Pattern centralizes object generation, making it more scalable and maintainable.
 The Factory Design Pattern addresses these concerns, resulting in more manageable, versatile, and scalable code.
-
-
-
-#### Example
-
-![App Screenshot](images/PatternStructure.png)
