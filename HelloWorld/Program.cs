@@ -1,19 +1,19 @@
 ﻿using System;
 
-//DERIVED DECORATOR CLASS
 namespace DecoratorPattern
 {
-    //BASE INTERFACE
+    //COMPONENT
     interface IPizza
     {
-        string GetPizzaType();
+        string MakePizza();
     }
-    // CONCRETE CLASS
+
+    //CONCRETE COMPONENT
     class Pizza : IPizza
     {
-        public string GetPizzaType()
+        public string MakePizza()
         {
-            return "This is normal Pizza";
+            return "This is plain Pizza\n";
         }
     }
 
@@ -28,12 +28,13 @@ namespace DecoratorPattern
             _pizza = pizza;
         }
 
-        public virtual string GetPizzaType()
+        public virtual string MakePizza()
         {
-            return "this is nothing";
+            return "this is Round Shaped pizza\n";
         }
     }
 
+    //CONCRETE DECORATOR 1 CLASS
 
     class cheeseDecorator : BasePizzaDecorator
     {
@@ -41,13 +42,14 @@ namespace DecoratorPattern
         {
         }
 
-        public override string GetPizzaType()
+        public override string MakePizza()
         {
-            string type = base.GetPizzaType();
-            type += "\nwith extra cheese";
+            string type = base.MakePizza();
+            type += "\nwith extra cheese\n";
             return type;
         }
     }
+    //CONCRETE DECORATOR 2 CLASS
 
     class TomatoDecorator : BasePizzaDecorator
     {
@@ -55,10 +57,10 @@ namespace DecoratorPattern
         {
         }
 
-        public override string GetPizzaType()
+        public override string MakePizza()
         {
-            string type = base.GetPizzaType();
-            type += "\nwith extra Tomato";
+            string type = base.MakePizza();
+            type += "\nwith extra Tomato\n";
             return type;
         }
     }
@@ -71,9 +73,11 @@ namespace DecoratorPattern
 
          IPizza tomatoAddedPizza = new TomatoDecorator(cheesePizaa);
 
-         Console.WriteLine(tomatoAddedPizza.GetPizzaType());
+        Console.WriteLine(tomatoAddedPizza.MakePizza());
 
+        Console.WriteLine(cheesePizaa.MakePizza());
 
+        Console.ReadKey();
 
         }
     }
