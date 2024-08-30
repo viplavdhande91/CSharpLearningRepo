@@ -3,13 +3,12 @@
 
 namespace Cal
 {
-    interface IService
+    interface IAuthService
     {
         void Login(int age);
     }
 
-
-    class ConcreteService : IService
+    class AuthConcreteService : IAuthService
     {
         public void Login(int age) {
 
@@ -17,16 +16,16 @@ namespace Cal
         }
     }
 
-    class ProxyService : IService
+    class AuthProxyService : IAuthService
     {
-        private ConcreteService _service;
+        private AuthConcreteService _concreteService;
 
-        public ProxyService(ConcreteService serivce)
+        public AuthProxyService(AuthConcreteService concreteService)
         {
-            _service = serivce;
+            _concreteService = concreteService;
         }
 
-        public void Login(int age)
+        public void Login(int age) ///PREVALIDATION IN PROXY CLASS
         {
            if(age< 18 )
             {
@@ -34,7 +33,7 @@ namespace Cal
             }
            else
             {
-                _service.Login(age);
+                _concreteService.Login(age);
             }
         }
     }
@@ -44,8 +43,8 @@ namespace Cal
 
         static void Main(string[] args) {
 
-            ConcreteService concreteService = new ConcreteService();
-            ProxyService proxyService = new ProxyService(concreteService);
+            AuthConcreteService concreteService = new AuthConcreteService();
+            AuthProxyService proxyService = new AuthProxyService(concreteService);
 
             proxyService.Login(15);
 
@@ -55,10 +54,5 @@ namespace Cal
 
         }
 
-
-
     };
-
-
-
 }
