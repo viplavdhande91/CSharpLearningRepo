@@ -18,7 +18,7 @@
 
 ### Another Example
 
--    ![Proxy Pattern](images/proxy-example2.png)
+   ![Proxy Pattern](images/proxy-example2.png)
 - Note :  OrderFulfillment is a proxy class and Warehouse is real Subject class . OrderFulfillment validates whether item is in stock or not to fullfill the order .
 
 
