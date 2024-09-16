@@ -1,38 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HelloWorld
+﻿namespace Observer
 {
-
-    //PUBLISHER /NOTIFIER CLASS /SUBJECT
-    public class ClassNotifier
-    {
-        private ArrayList objNotifications = new ArrayList();
-
-        public void addNotification(INotification obj)
-        {
-            objNotifications.Add(obj);
-        }
-        public void removeNotification(INotification obj)
-        {
-            objNotifications.Remove(obj);
-        }
-        public void NotifyAll()
-        {
-            foreach (INotification objNotification in objNotifications)
-            {
-                objNotification.Notify();
-            }
-        }
-    }
-
-
     //CLIENT CODE
     class Program
     {
-
         static void Main(string[] args)
         {
             // This application takes customer code and if
@@ -40,14 +10,14 @@ namespace HelloWorld
             // the error to all the SUBSCRIBERS/OBSERVERS
 
             // Notifier/Subject to notify all the observers
-            ClassNotifier objNotifier = new ClassNotifier();
+            Subject sub = new Subject();
 
             // Add subjects/subscribers which needs to be notified
             EmailNotification objEmailNotification = new EmailNotification();
             EventNotifcation objEventNotification = new EventNotifcation();
 
-            objNotifier.addNotification(objEmailNotification);
-            objNotifier.addNotification(objEventNotification);
+            sub.addNotification(objEmailNotification);
+            sub.addNotification(objEventNotification);
 
             // Create a error by entering length more than 10 characters
             Console.WriteLine("Enter Customer Code:");
@@ -56,7 +26,7 @@ namespace HelloWorld
             // If the length is more than 10 characters[Error Case] notify all subjects/subscribers
             if (strCustomerCode?.Length > 10)
             {
-                objNotifier.NotifyAll();
+                sub.NotifyAll();
             }
 
             Console.ReadLine();

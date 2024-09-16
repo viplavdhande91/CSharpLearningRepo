@@ -9,7 +9,7 @@
 ### Typical Use Cases:
 - A mailing list where every time an event happens (i.e. a new product, a gathering, etc.) **a message needs to send to the users who subscribed to the list.**
 
-- The Company needs to notify all its employees of any decision they make. Here, the **Company is the Subject**, and the **Employees are the Observers**. Any change in the policy of the company and the company need to notify all its employees or you can say, Observers. This is a simple real-world example of the Observer Design Pattern.
+- **Example :** The Company needs to notify all its employees of any decision they make. Here, the **Company is the Subject**, and the **Employees are the Observers**. Any change in the policy of the company and the company need to notify all its employees or you can say, Observers. This is a simple real-world example of the Observer Design Pattern.
 
 ### How Does the Observer Design Pattern Work?
 The observer design pattern is having two main components. They are as follows
@@ -17,3 +17,16 @@ The observer design pattern is having two main components. They are as follows
 - **Subject:** They are also called Publishers. When a change occurs to a subject it should notify all its Subscribers/Observers.
 - **Observers:** They are also called subscribers. They simply listen to the changes in the subjects.
    Another name of the Observer is the Listener.
+
+## Pros and Cons
+### Pros
+- **Open/Closed Principle**. You can introduce new subscriber classes without having to change the publisher’s code (and vice versa if there’s a publisher interface).
+- You can establish relations between objects at runtime.
+
+### Cons
+- Subscribers are notified in random order
+
+
+### Example
+
+![alt text](HelloWorld/img/ObserverPatternExample.png)
