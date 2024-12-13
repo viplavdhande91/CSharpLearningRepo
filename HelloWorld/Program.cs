@@ -1,46 +1,18 @@
-﻿using System;
-
-//namespace Cal
-//{
-
-//    class Maths
-//    {
-
-//        public static void GetNextName(ref int id)
-//        {
-//        id += 1;
-//        }
-//        static void Main(string[] args)
-//        {
-//            int i = 1;
-//            Console.WriteLine("Previous value of integer i:" + i.ToString());
-//             GetNextName(ref i);
-//            Console.WriteLine("Current value of integer i:" + i.ToString());
-//        }
-
-//    };
-
-//}
-
-
-namespace Cal
+﻿namespace Cal
 {
     class Maths
     {
-        public static void GetNextName(out int id, out int jd)
+        public static void Main(string[] args)
         {
-
-            id = 1;
-            jd = 2;
-
-        }
-        static void Main(string[] args)
-        {
-            int id;
-            int jd;
-            GetNextName(out id, out jd);
-            Console.WriteLine($"{id}   {jd}");
+            int outVar;
+            int refVar = 55;
+            GetNextName(out outVar, ref refVar);
         }
 
+        public static int GetNextName(out int outVar, ref int refVar)
+        {
+            outVar = 1;
+            return outVar + refVar;
+        }
     };
 }
