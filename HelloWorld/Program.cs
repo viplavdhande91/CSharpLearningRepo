@@ -1,19 +1,18 @@
 ﻿using HelloWorld;
-using System;
 
 namespace EventHandling
 {
 
-
     class Program
     {
 
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
 
             Video video = new Video("Game of thrones SO1E01");
-            VideoEncoder videoEncoder  =  new VideoEncoder();
+            VideoEncoder videoEncoder = new VideoEncoder();
 
-            MessageService? messageService   = new MessageService();
+            MessageService? messageService = new MessageService();
             EmailService? emailService = new EmailService();
 
             videoEncoder.videoEncodedevent += messageService.SendService;
@@ -21,14 +20,8 @@ namespace EventHandling
 
             videoEncoder.Encode(video);
 
-                
-
         }
 
-
-
     };
-
-
 
 }
