@@ -11,10 +11,10 @@
 
     internal class VideoEncoder
     {
-        public event EventHandler<VideoEventArgs>? videoEncodedevent;
+        public event EventHandler<VideoEventArgs>? VideoEncodedevent; //Event Handler Delegate
 
         //public delegate void VideoEncoderDelegate(object video,VideoEventArgs e);
-        //public event VideoEncoderDelegate? videoEncoded;
+        //public event VideoEncoderDelegate? VideoEncodedevent;
 
         public void Encode(Video video)
         {
@@ -29,7 +29,7 @@
         //EVENT HANDLING PASSER FUNCTION    
         protected virtual void OnVideoEncoded(Video video)
         {
-            EventHandler<VideoEventArgs>? handler = videoEncodedevent;
+            EventHandler<VideoEventArgs>? handler = VideoEncodedevent;
 
             if (handler != null)
             {
