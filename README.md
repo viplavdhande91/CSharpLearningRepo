@@ -1,28 +1,33 @@
+## Partial Classes in C#
 
-# Partial Classes in c#
-## Important points: 
+### What is a Partial Class?
 
+A **partial class** allows you to split the definition of a class, struct, or interface across multiple files. All parts are combined into a single class at compile time.
 
-1. When you want to chop the functionality of the class, method, interface, or structure into multiple files, then you should use partial keyword and all the files are mandatory to be available at compile time for creating the final file.
+```csharp
+// File1.cs
+public partial class MyClass
+{
+    public void MethodA() { }
+}
 
-2. The partial modifier can only present instantly before the keywords like struct, class, and interface.
+// File2.cs
+public partial class MyClass
+{
+    public void MethodB() { }
+}
+```
 
+## Key Points
 
-3. Every part of the partial class definition should be in the same assembly and namespace, but you can use a different source file name.
+- Use the `partial` keyword to split class, struct, or interface definitions across multiple files.
+- All parts must be in the same namespace and assembly.
+- All parts must have the same accessibility level.
+- If one part is marked as `abstract`, `sealed`, or `base`, the entire class adopts that modifier.
+- All files must be available at compile time.
 
-4. Every part of the partial class definition should have the same accessibility as private, protected, etc.
-5. If any part of the partial class is declared as an abstract, sealed, or base, then the whole class is declared of the same type.
+## Why Use Partial Classes?
 
-# Why use Partial Classes?
-
-
-
-1. multiple developers can work simultaneously in the same class in different files.
-
-
-2. you can split the UI of the design code and the business logic code to read and understand the code.
-
-
-3.You can also maintain your application in an efficient manner by compressing large classes into small ones.
- 
-
+- Enables multiple developers to work on different parts of the same class.
+- Helps separate UI code from business logic for better organization.
+- Improves maintainability by breaking large classes into smaller, logical parts.
