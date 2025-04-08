@@ -1,24 +1,40 @@
-
 # C# Abstraction
 
-## Important points: 
+## What is Abstraction?
 
+**Abstraction** is the concept of hiding implementation details and showing only essential features of an object. It helps in reducing complexity and increasing code readability.
 
-1. Abstract class: is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+## Abstract Classes and Methods
 
-2. Abstract method: can only be used in an abstract class, and it does not have a body. The body is provided by the derived class (inherited from).
+- An **abstract class** is a class that cannot be instantiated directly. It is meant to be inherited by other classes.
+- An **abstract method** has no body and must be implemented by a derived class.
 
+```csharp
+public abstract class Animal
+{
+    public abstract void MakeSound(); // Abstract method
+}
 
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Bark");
+    }
+}
+```
 
+## Key Points
 
-# Why And When To Use Abstract Classes and Methods?
+- Abstract classes cannot be instantiated.
+- Abstract methods must be defined in an abstract class.
+- Derived classes must implement all abstract methods.
+- Abstract classes can contain both abstract and non-abstract members.
 
+## Why and When to Use
 
+- Use abstraction to **enforce a contract** for derived classes.
+- Helps **hide internal implementation** details and expose only relevant parts.
+- Promotes **security**, **modularity**, and **clean architecture**.
 
-
-1. To achieve security - hide certain details and only show the important details of an object.
-
-Note: Abstraction can also be achieved with Interfaces, which you will learn more about in the next chapter.
-
-
-
+> **Note:** Abstraction can also be achieved using interfaces.
